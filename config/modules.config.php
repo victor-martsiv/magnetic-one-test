@@ -29,5 +29,7 @@ return [
     'Laminas\Validator',
     'Laminas\DeveloperTools',
     'Laminas\Diactoros',
+    'DoctrineModule',
+    'DoctrineORMModule',
     'Application',
 ];

@@ -1,10 +1,8 @@
 <?php
 
-namespace Application\Model\Entry;
+namespace Application\Model;
 
-use ArrayObject;
-
-class Product extends ArrayObject
+class Product
 {
     private int $id;
     private string $name;
@@ -16,14 +14,7 @@ class Product extends ArrayObject
 
     public function __construct(array $data = [])
     {
-        parent::__construct($data);
-        $this->id          = (int)($data['id'] ?? null);
-        $this->name        = $data['name'] ?? '';
-        $this->description = $data['description'] ?? '';
-        $this->prise       = $data['prise'] ?? '';
-        $this->photo       = $data['photo'] ?? null;
-        $this->sku         = $data['sku'] ?? '';
-        $this->quantity    = (int)($data['quantity'] ?? null);
+
     }
 
     public function getId(): int

@@ -20,8 +20,18 @@ return [
     'view_manager' => [
         'display_exceptions' => true,
     ],
-    'db'           => [
-        'username' => 'root',
-        'password' => '',
+    'doctrine'     => [
+        'connection' => [
+            'orm_default' => [
+                'driverClass' => \Doctrine\DBAL\Driver\PDO\MySQL\Driver::class,
+                'params'      => [
+                    'host'     => '127.0.0.1',
+                    'port'     => '3306',
+                    'user'     => 'root',
+                    'password' => '',
+                    'dbname'   => 'laminas',
+                ],
+            ],
+        ],
     ],
 ];
