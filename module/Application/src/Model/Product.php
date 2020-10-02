@@ -43,7 +43,7 @@ class Product
     private int $quantity;
 
     /**
-     * @ORM\ManyToMany(targetEntity="\Application\Mpdel\Collection", inversedBy="products")
+     * @ORM\ManyToMany(targetEntity="\Application\Model\Collection", inversedBy="products")
      * @ORM\JoinTable(name="product_collection",
      *      joinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="collection_id", referencedColumnName="id")}

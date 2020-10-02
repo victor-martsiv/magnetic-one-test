@@ -24,7 +24,7 @@ class Collection
 
 
     /**
-     * @ORM\ManyToMany(targetEntity="\Application\Entity\Product", mappedBy="collections")
+     * @ORM\ManyToMany(targetEntity="\Application\Model\Product", mappedBy="collections")
      */
     protected ArrayCollection $products;
 
