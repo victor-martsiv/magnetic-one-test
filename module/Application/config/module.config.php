@@ -10,7 +10,6 @@ declare(strict_types=1);
 
 namespace Application;
 
-use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
 use Laminas\Router\Http\Literal;
 use Laminas\Router\Http\Segment;
 use Laminas\ServiceManager\Factory\InvokableFactory;
@@ -70,22 +69,6 @@ return [
         ],
         'template_path_stack'      => [
             __DIR__.'/../view',
-        ],
-    ],
-    'doctrine'     => [
-        'driver' => [
-            'doctrine_driver' => [
-                'class' => AnnotationDriver::class,
-                'cache' => 'array',
-                'paths' => [
-                    'module/Application/src/Model',
-                ],
-            ],
-            'orm_default'     => [
-                'drivers' => [
-                    'Application\Model\Entry' => 'doctrine_driver',
-                ],
-            ],
         ],
     ],
 ];

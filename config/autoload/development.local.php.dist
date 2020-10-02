@@ -16,6 +16,8 @@
  * You may also create files matching the glob pattern `{,*.}{global,local}-development.php`.
  */
 
+use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
+
 return [
     'view_manager' => [
         'display_exceptions' => true,
@@ -31,6 +33,30 @@ return [
                     'password' => '',
                     'dbname'   => 'laminas',
                 ],
+            ],
+        ],
+        'driver'                   => [
+            'doctrine_driver' => [
+                'class' => AnnotationDriver::class,
+                'cache' => 'array',
+                'paths' => [
+                    'module/Application/src/Model',
+                ],
+            ],
+            'orm_default'     => [
+                'drivers' => [
+                    'Application\Model' => 'doctrine_driver',
+                ],
+            ],
+        ],
+        'migrations_configuration' => [
+            'orm_default' => [
+                'directory'       => 'module/Application/src/Migrations',
+                'name'            => 'Migrations Name',
+                'namespace'       => 'Application\\Migrations',
+                'table'           => 'application_migrations_table',
+                'column'          => 'version',
+                'custom_template' => null,
             ],
         ],
     ],
