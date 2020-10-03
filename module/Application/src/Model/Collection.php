@@ -3,6 +3,7 @@
 namespace Application\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -14,19 +15,19 @@ class Collection
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
-     * @ORM\Column(name="id")
+     * @ORM\Column(name="id",type="integer")
      */
     private int $id;
     /**
-     * @ORM\Column(name="name")
+     * @ORM\Column(name="title",type="string",length=255,nullable=false)
      */
-    private string $name;
+    private string $title;
 
 
     /**
      * @ORM\ManyToMany(targetEntity="\Application\Model\Product", mappedBy="collections")
      */
-    protected ArrayCollection $products;
+    protected DoctrineCollection $products;
 
     public function __construct()
     {
@@ -38,9 +39,9 @@ class Collection
         return $this->id;
     }
 
-    public function getName(): string
+    public function getTitle(): string
     {
-        return $this->name;
+        return $this->title;
     }
 
     public function setId(int $id): void
@@ -48,20 +49,17 @@ class Collection
         $this->id = $id;
     }
 
-    public function setName(string $name): void
+    public function setTitle(string $title): void
     {
-        $this->name = $name;
+        $this->title = $title;
     }
 
-    /**
-     * @return ArrayCollection
-     */
-    public function getProducts(): ArrayCollection
+    public function getProducts(): DoctrineCollection
     {
         return $this->products;
     }
 
-    public function addProduct($product): void
+    public function addProduct(Product $product): void
     {
         $this->products[] = $product;
     }

@@ -3,6 +3,7 @@
 namespace Application\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -14,33 +15,37 @@ class Product
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
-     * @ORM\Column(name="id")
+     * @ORM\Column(name="id",type="integer")
      */
     private int $id;
     /**
-     * @ORM\Column(name="name")
+     * @ORM\Column(name="shopify_product_id", type="bigint",nullable=false)
      */
-    private string $name;
+    private int $shopifyProductId;
     /**
-     * @ORM\Column(name="description")
+     * @ORM\Column(name="title",type="string",length=255,nullable=false)
+     */
+    private string $title;
+    /**
+     * @ORM\Column(name="description",type="text")
      */
     private string $description;
     /**
-     * @ORM\Column(name="prise")
+     * @ORM\Column(name="prise",type="string",length=255,nullable=false)
      */
     private string $prise;
     /**
-     * @ORM\Column(name="photo")
+     * @ORM\Column(name="photo",type="string",length=255,nullable=false)
      */
     private string $photo;
     /**
-     * @ORM\Column(name="sku")
+     * @ORM\Column(name="sku",type="string",length=255,nullable=false)
      */
     private string $sku;
     /**
-     * @ORM\Column(name="quantity")
+     * @ORM\Column(name="quantity",type="string",length=255,nullable=false)
      */
-    private int $quantity;
+    private string $quantity;
 
     /**
      * @ORM\ManyToMany(targetEntity="\Application\Model\Collection", inversedBy="products")
@@ -49,7 +54,7 @@ class Product
      *      inverseJoinColumns={@ORM\JoinColumn(name="collection_id", referencedColumnName="id")}
      *      )
      */
-    protected ArrayCollection $collections;
+    protected DoctrineCollection $collections;
 
     public function __construct()
     {
@@ -61,9 +66,9 @@ class Product
         return $this->id;
     }
 
-    public function getName(): string
+    public function getTitle(): string
     {
-        return $this->name;
+        return $this->title;
     }
 
     public function getDescription(): string
@@ -86,7 +91,7 @@ class Product
         return $this->sku;
     }
 
-    public function getQuantity(): int
+    public function getQuantity(): string
     {
         return $this->quantity;
     }
@@ -97,9 +102,9 @@ class Product
         $this->id = $id;
     }
 
-    public function setName(string $name): void
+    public function setTitle(string $title): void
     {
-        $this->name = $name;
+        $this->title = $title;
     }
 
     public function setDescription(string $description): void
@@ -122,25 +127,35 @@ class Product
         $this->sku = $sku;
     }
 
-    public function setQuantity(int $quantity): void
+    public function setQuantity(string $quantity): void
     {
         $this->quantity = $quantity;
     }
 
+    public function getShopifyProductId(): int
+    {
+        return $this->shopifyProductId;
+    }
 
-    public function getCollections(): ArrayCollection
+    public function setShopifyProductId(int $shopifyProductId): void
+    {
+        $this->shopifyProductId = $shopifyProductId;
+    }
+
+    public function getCollections(): DoctrineCollection
     {
         return $this->collections;
     }
 
-    public function addCollection($collection): void
+    public function addCollection(Collection $collection): void
     {
         $this->collections[] = $collection;
     }
 
-
-    public function removeCollectionAssociation($collection): void
+    public function removeCollectionAssociation(Collection $collection): void
     {
         $this->collections->removeElement($collection);
     }
+
+
 }

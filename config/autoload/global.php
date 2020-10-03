@@ -13,4 +13,14 @@
  */
 
 return [
+    'dependencies' => [
+        'factories' => [
+            Application\Command\UploadProducts::class => Application\Command\UploadProductsFactory::class,
+        ],
+    ],
+    'laminas-cli'  => [
+        'commands' => [
+            'shopify:upload-products' => Application\Command\UploadProducts::class,
+        ],
+    ],
 ];

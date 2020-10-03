@@ -15,7 +15,7 @@ use Laminas\Router\Http\Segment;
 use Laminas\ServiceManager\Factory\InvokableFactory;
 
 return [
-    'router'       => [
+    'router'          => [
         'routes' => [
             'home'        => [
                 'type'    => Literal::class,
@@ -49,13 +49,13 @@ return [
             ],
         ],
     ],
-    'controllers'  => [
+    'controllers'     => [
         'factories' => [
             Controller\IndexController::class   => InvokableFactory::class,
             Controller\ProductController::class => InvokableFactory::class,
         ],
     ],
-    'view_manager' => [
+    'view_manager'    => [
         'display_not_found_reason' => true,
         'display_exceptions'       => true,
         'doctype'                  => 'HTML5',
@@ -69,6 +69,12 @@ return [
         ],
         'template_path_stack'      => [
             __DIR__.'/../view',
+        ],
+    ],
+    'service_manager' => [
+        //...
+        'factories' => [
+            \Application\Service\ProductManager::class => \Application\Service\Factory\ProductManagerFactory::class,
         ],
     ],
 ];

@@ -26,7 +26,10 @@ final class Version20201002210041 extends AbstractMigration
         $products->addColumn('id', 'integer', [
             'autoincrement' => true,
         ]);
-        $products->addColumn('name', 'string', [
+        $products->addColumn('shopify_product_id', 'bigint', [
+            'notnull' => true,
+        ]);
+        $products->addColumn('title', 'string', [
             'notnull' => true,
             'length'  => 255,
         ]);
@@ -46,8 +49,9 @@ final class Version20201002210041 extends AbstractMigration
             'notnull' => true,
             'length'  => 255,
         ]);
-        $products->addColumn('quantity', 'integer', [
+        $products->addColumn('quantity', 'string', [
             'notnull' => true,
+            'length'  => 255,
         ]);
         $products->setPrimaryKey(['id']);
         $products->addOption('engine', 'InnoDB');
@@ -59,7 +63,12 @@ final class Version20201002210041 extends AbstractMigration
         $collections->addColumn('id', 'integer', [
             'autoincrement' => true,
         ]);
-        $collections->addColumn('name', 'string', [
+        $collections->addColumn('photo', 'string', [
+            'notnull' => true,
+            'default' => '',
+            'length'  => 255,
+        ]);
+        $collections->addColumn('title', 'string', [
             'notnull' => true,
             'length'  => 255,
         ]);

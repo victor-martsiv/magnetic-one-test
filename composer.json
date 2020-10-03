@@ -25,7 +25,8 @@
     "laminas/laminas-session": "^2.9.1",
     "laminas/laminas-di": "^3.1.1",
     "doctrine/doctrine-orm-module": "^3.0",
-    "doctrine/migrations": "^2.0"
+    "doctrine/migrations": "^2.0",
+    "phpclassic/php-shopify": "^1.1"
   },
   "autoload": {
     "psr-4": {
@@ -58,6 +59,7 @@
   },
   "require-dev": {
     "roave/security-advisories": "dev-master",
-    "laminas/laminas-developer-tools": "^2.0.1"
+    "laminas/laminas-developer-tools": "^2.0.1",
+    "laminas/laminas-cli": "^0.1.4"
   }
 }
