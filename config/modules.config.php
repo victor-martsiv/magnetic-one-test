@@ -13,7 +13,6 @@
  */
 return [
     'Laminas\Di',
-    'Laminas\Log',
     'Laminas\Db',
     'Laminas\Mvc\Plugin\FilePrg',
     'Laminas\Mvc\Plugin\FlashMessenger',

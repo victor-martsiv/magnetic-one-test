@@ -5,12 +5,11 @@ namespace Application\Controller;
 
 
 use Application\Model\Collection;
-use Application\Model\Product;
 use Doctrine\ORM\EntityManager;
 use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\View\Model\ViewModel;
 
-class ProductController extends AbstractActionController
+class CollectionController extends AbstractActionController
 {
     protected EntityManager $em;
 
@@ -21,15 +20,15 @@ class ProductController extends AbstractActionController
 
     public function viewAction()
     {
-        $productId = $this->params()->fromRoute('id');
-        $product   = $this->em->getRepository(Product::class)->findOneBy(['id' => $productId]);
-        if ($product === null) {
+        $collectionId = $this->params()->fromRoute('id');
+        $collection   = $this->em->getRepository(Collection::class)->findOneBy(['id' => $collectionId]);
+        if ($collection === null) {
             return $this->getResponse()->setStatusCode(404);
         }
         $collections = $this->em->getRepository(Collection::class)->findAll();
 
         return new ViewModel([
-            'product'     => $product,
+            'collection'  => $collection,
             'collections' => $collections,
         ]);
     }

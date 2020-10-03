@@ -1,0 +1,15 @@
+<?php
+/**
+ * @var Laminas\View\Renderer\PhpRenderer $this
+ * @var \Application\Model\Collection[] $collections
+ */
+?>
+<div class="col-md-4">
+    <h2>Collection list</h2>
+    <div class="list-group">
+        <?php foreach ($collections as $collection): ?>
+            <a href="<?= $this->url('collection', ['action' => 'view', 'id' => $collection->getId()]) ?>"
+               class="list-group-item list-group-item-action"><?= $this->escapeHtml($collection->getTitle()) ?></a>
+        <?php endforeach; ?>
+    </div>
+</div>

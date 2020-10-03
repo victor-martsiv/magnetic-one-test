@@ -12,12 +12,11 @@ namespace Application;
 
 use Laminas\Router\Http\Literal;
 use Laminas\Router\Http\Segment;
-use Laminas\ServiceManager\Factory\InvokableFactory;
 
 return [
     'router'          => [
         'routes' => [
-            'home'        => [
+            'home'       => [
                 'type'    => Literal::class,
                 'options' => [
                     'route'    => '/',
@@ -27,32 +26,32 @@ return [
                     ],
                 ],
             ],
-            'application' => [
+            'product'    => [
                 'type'    => Segment::class,
                 'options' => [
-                    'route'    => '/application[/:action]',
-                    'defaults' => [
-                        'controller' => Controller\IndexController::class,
-                        'action'     => 'index',
+                    'route'       => '/product[/:action[/:id]]',
+                    'constraints' => [
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]*',
                     ],
-                ],
-            ],
-            'product'     => [
-                'type'    => Segment::class,
-                'options' => [
-                    'route'    => '/product[/:action]',
-                    'defaults' => [
+                    'defaults'    => [
                         'controller' => Controller\ProductController::class,
-                        'action'     => 'index',
                     ],
                 ],
             ],
-        ],
-    ],
-    'controllers'     => [
-        'factories' => [
-            Controller\IndexController::class   => InvokableFactory::class,
-            Controller\ProductController::class => InvokableFactory::class,
+            'collection' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'       => '/collection[/:action[/:id]]',
+                    'constraints' => [
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]*',
+                    ],
+                    'defaults'    => [
+                        'controller' => Controller\CollectionController::class,
+                    ],
+                ],
+            ],
         ],
     ],
     'view_manager'    => [
@@ -72,7 +71,6 @@ return [
         ],
     ],
     'service_manager' => [
-        //...
         'factories' => [
             \Application\Service\ProductManager::class => \Application\Service\Factory\ProductManagerFactory::class,
         ],

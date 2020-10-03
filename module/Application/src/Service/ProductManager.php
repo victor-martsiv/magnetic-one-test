@@ -29,7 +29,7 @@ class ProductManager
         $product->setShopifyProductId($data['id']);
         $product->setTitle($data['title'] ?? '');
         $product->setDescription(StaticFilter::execute($data['body_html'] ?? '', 'HtmlEntities'));
-        $product->setPhoto($data['image'][0]['src'] ?? '');
+        $product->setPhoto($data['image']['src'] ?? '');
         $product->setPrise($data['variants'][0]['price'] ?? '');
         $product->setQuantity($data['variants'][0]['inventory_quantity'] ?? '');
         $product->setSku($data['variants'][0]['sku'] ?? '');
@@ -63,6 +63,7 @@ class ProductManager
                 $collection = new Collection();
             }
             $collection->setTitle($title);
+            $collection->setPhoto($item['image']['src']);
             $collection->addProduct($product);
 
             try {

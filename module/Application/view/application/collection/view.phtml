@@ -1,0 +1,29 @@
+<?php
+/**
+ * @var Laminas\View\Renderer\PhpRenderer $this
+ * @var \Application\Model\Collection $collection
+ * @var \Application\Model\Collection[] $collections
+ */
+?>
+<div class="row">
+    <div class="col-md-8">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1><?= $this->escapeHtml($collection->getTitle()) ?></h1>
+                    <img src="<?= $this->escapeHtml($collection->getPhoto()) ?>"
+                         alt=" <?= $this->escapeHtml($collection->getTitle()) ?>" class="img-thumbnail">
+                    <div class="list-group">
+                        <?php foreach ($collection->getProducts() as $product): ?>
+                            <a href="<?= $this->url('product', ['action' => 'view', 'id' => $product->getId()]) ?>"
+                               class="list-group-item list-group-item-action"><?= $this->escapeHtml($product->getTitle()) ?></a>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?= $this->partial('partial/collection_list.phtml', [
+        'collections' => $collections,
+    ]) ?>
+</div>

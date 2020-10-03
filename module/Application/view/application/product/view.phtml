@@ -1,0 +1,44 @@
+<?php
+/**
+ * @var Laminas\View\Renderer\PhpRenderer $this
+ * @var \Application\Model\Product $product
+ * @var \Application\Model\Collection[] $collections
+ */
+?>
+<div class="row">
+    <div class="col-md-8">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <img src="<?= $this->escapeHtml($product->getPhoto()) ?>" class="card-img-top"
+                             alt="<?= $this->escapeHtml($product->getTitle()) ?>">
+                        <div class="card-body">
+                            <h5 class="card-title"><?= $this->escapeHtml($product->getTitle()) ?></h5>
+                            <ul class="list-group">
+                                <li class="list-group-item disabled" aria-disabled="true">Product options</li>
+                                <li class="list-group-item">Prise: <?= $this->escapeHtml($product->getPrise()) ?></li>
+                                <li class="list-group-item">
+                                    Quantity: <?= $this->escapeHtml($product->getQuantity()) ?></li>
+                                <li class="list-group-item">Sku: <?= $this->escapeHtml($product->getSku()) ?></li>
+                            </ul>
+                            <p class="card-text">
+                                <?= $this->escapeHtml($product->getDescription()) ?>
+                            </p>
+                            <div class="list-group">
+                                <?php foreach ($product->getCollections() as $collection): ?>
+                                    <a href="<?= $this->url('collection',
+                                        ['action' => 'view', 'id' => $collection->getId()]) ?>"
+                                       class="list-group-item list-group-item-action"><?= $this->escapeHtml($collection->getTitle()) ?></a>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?= $this->partial('partial/collection_list.phtml', [
+        'collections' => $collections,
+    ]) ?>
+</div>

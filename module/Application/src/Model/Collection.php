@@ -22,6 +22,10 @@ class Collection
      * @ORM\Column(name="title",type="string",length=255,nullable=false)
      */
     private string $title;
+    /**
+     * @ORM\Column(name="photo",type="string",length=255,nullable=false)
+     */
+    private string $photo;
 
 
     /**
@@ -62,5 +66,15 @@ class Collection
     public function addProduct(Product $product): void
     {
         $this->products[] = $product;
+    }
+
+    public function getPhoto(): string
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto(string $photo): void
+    {
+        $this->photo = $photo;
     }
 }
