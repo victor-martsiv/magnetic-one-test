@@ -1,6 +1,6 @@
 #MagneticOne, welcome to my test work
 
-My name is Viktor Martsiv im from Rivne
+My name is Viktor Martsiv I'm from Rivne
 
 My email: vitia@protonmail.com
 
@@ -12,9 +12,9 @@ My work email: martsivwork@gmail.com
 3. Create config file for nginx or add the virtual host for Apache
 4. cd to folder with project and do command ``composer install``. ( before a _composer install_  command make sure you have installed a composer
 https://getcomposer.org/ )
-5. Set db connection in file `./config/autoload/development.local.php` ( if file not exist then make copy from  _./config/autoload/development.local.php.dist_ )  
+5. Set db connection in file `./config/autoload/development.local.php` ( if file do not exist then make copy from  _./config/autoload/development.local.php.dist_ )  
 6. Next step is to up DB migration. Use a command: ` ./vendor/bin/doctrine-module migrations:migrate ` 
-7. For an upload products from shopify API uses a command: `./vendor/bin/laminas shopify:upload-products `
+7. To upload products from shopify API use a command: `./vendor/bin/laminas shopify:upload-products `
 8. And go to the browser on your local domain
  
  PS:_I hope all gon okay :)_
