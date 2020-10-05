@@ -10,12 +10,12 @@ My work email: martsivwork@gmail.com
 1. Clone my gitHub project as you like
 2. Create in your mysql new DB. Set name for DB, again, as you like.
 3. Create config file for nginx or add the virtual host for Apache
-4. cd to folder with project and do command ``composer install``. ( before a _composer install_  command make sure you have installed a composer
-https://getcomposer.org/ )
+4. cd to folder with project and do command `composer install`. ( before a _composer install_  command make sure you have installed a composer https://getcomposer.org/ )
 5. Set db connection in file `./config/autoload/development.local.php` ( if file not exist then make copy from  _./config/autoload/development.local.php.dist_ )  
-6. Next step is to up DB migration. Use a command: ` ./vendor/bin/doctrine-module migrations:migrate ` 
-7. For an upload products from shopify API uses a command: `./vendor/bin/laminas shopify:upload-products `
-8. And go to the browser on your local domain
+6. Set Shopify API configuration in `./config/autoload/development.local.php`
+7. Next step is to up DB migration. Use a command: ` ./vendor/bin/doctrine-module migrations:migrate ` 
+8. For an upload products from shopify API uses a command: `./vendor/bin/laminas shopify:upload-products `
+9. And go to the browser on your local domain
  
  PS:_I hope all gon okay :)_
 
