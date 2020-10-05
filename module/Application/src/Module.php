@@ -12,6 +12,7 @@ namespace Application;
 
 use Doctrine\ORM\EntityManager;
 use Laminas\ModuleManager\Feature\ConfigProviderInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
 
 class Module implements ConfigProviderInterface
 {
@@ -24,13 +25,13 @@ class Module implements ConfigProviderInterface
     {
         return [
             'factories' => [
-                Controller\IndexController::class      => function ($container) {
+                Controller\IndexController::class      => function (ServiceLocatorInterface $container) {
                     return new Controller\IndexController($container->get(EntityManager::class));
                 },
-                Controller\ProductController::class    => function ($container) {
+                Controller\ProductController::class    => function (ServiceLocatorInterface $container) {
                     return new Controller\ProductController($container->get(EntityManager::class));
                 },
-                Controller\CollectionController::class => function ($container) {
+                Controller\CollectionController::class => function (ServiceLocatorInterface $container) {
                     return new Controller\CollectionController($container->get(EntityManager::class));
                 },
             ],

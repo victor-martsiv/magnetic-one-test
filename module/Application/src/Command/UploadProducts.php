@@ -1,14 +1,17 @@
 <?php
 
-
 namespace Application\Command;
 
 use Application\Service\ProductManager;
+use Laminas\Config\Exception\InvalidArgumentException;
+use Laminas\ConfigAggregator\ConfigAggregator;
+use Laminas\ConfigAggregator\LaminasConfigProvider;
 use PHPShopify\ShopifySDK;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+
 
 class UploadProducts extends Command
 {
@@ -20,11 +23,19 @@ class UploadProducts extends Command
     {
         parent::__construct();
 
-        $this->shopifySDK     = ShopifySDK::config([
-            'ShopUrl'  => 'api2cartvictor.myshopify.com',
-            'ApiKey'   => 'cae8384e7562704ae379c32fdb6bed68',
-            'Password' => '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',
+        $aggregator  = new ConfigAggregator([
+            new LaminasConfigProvider('config/autoload/development.local.php'),
         ]);
+        $localConfig = $aggregator->getMergedConfig();
+        foreach ($localConfig['shopify_api'] as $key => $value) {
+            if (empty($localConfig['shopify_api'][$key])
+                && in_array($key, ['ShopUrl', 'ApiKey', 'Password'])
+            ) {
+                throw new  InvalidArgumentException('Invalid shopify API config. Set field: '.$key);
+            }
+        }
+
+        $this->shopifySDK     = ShopifySDK::config($localConfig['shopify_api']);
         $this->productManager = $productManager;
     }
 
